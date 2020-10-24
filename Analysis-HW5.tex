@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage{amsmath}
+\renewcommand{\baselinestretch}{1.05}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\title{Analysis 1}
+\author{Mike Desgrottes}
+\date{October 2020}
+
+\begin{document}
+\maketitle
+
+\begin{theorem}
+	Let $f: \mathbb{R} \to \mathbb{R}$, and suppose that $$|f(x) - f(y)| \leq (x - y)^{2} $$ for all real x and y. Prove that f is consant.
+\end{theorem}
+
+\begin{proof}
+	As $-(x - y)^{2} \leq f(x) - f(y) \leq (x - y)^{2}$, we see that $$ 0  = \lim_{x \to y} \frac{-(x - y)^{2}}{x - y} \leq f^{'}(x) = \lim_{x \to y} \frac{f(x) - f(y)}{x - y} \leq \lim_{x \to y} \frac{(x - y)^{2}}{x - y} = 0$$.
+	Hence $f^{'}(x) = 0 \implies $ f is constant.
+\end{proof}
+
+\begin{theorem}
+	Suppose g is real function on $\mathbb{R}$, with bounded derivative $|g^{'}| \leq M$. Fix $\epsilon > 0$, and define $f(x) = x + \epsilon g(x)$. Prove that f is one-to-one, if $\epsilon$ is small enough.
+\end{theorem}
+
+\begin{proof}
+	$f(x)$ is differentiable with derivative $f^{'}(x) = 1 + \epsilon g^{'}(x)$. The Mean value Theorem guarantee the existence of a real number $c$ such that $f^{'}(c) = \frac{f(x) - f(y)}{x - y}$. Hence if  $0 = |f(x) - f(y)| =|f^{'}(c)(x - y)| $, tt remains to show that $f^{'}(c) \not = 0$ which is given when $\epsilon M < 1$. $$- \epsilon M \leq \epsilon g^{'}(x) \leq \epsilon M \implies 1 - \epsilon M \leq 1 + \epsilon g^{'}(x) = f^{'}(x) \leq 1 + \epsilon M $$ with $1 - \epsilon M > 0$. The claims follows because when $\epsilon < \frac{1}{M}$, $|f(x) - f(y)| = 0 \implies |x - y| = 0$.
+\end{proof}
+
+\begin{theorem}
+	If $$ C_{0} + \frac{C_{1}}{2} + ... + \frac{C_{n - 1}}{n} + \frac{C_{n}}{n + 1} = 0 $$, where $C_{0},...,C_{n}$ are real constants, prove that the equation $$f(x) = C_{0} + C_{1}x + ... + C_{n - 1}x^{n - 1} + C_{n}x^{n} = 0 $$ has at least one real root between 0 and 1.
+\end{theorem}
+
+\begin{proof}
+	Let $g(x) = C_{0}x + \frac{C_{1}x^{2}}{2} + ... + \frac{C_{n - 1}x^{n}}{n} + \frac{C_{n}x^{n + 1}}{n + 1}$, then $g(x)$ is continuous and differentiable. Its derivative is given by $f(x)$. Since $g(0) = g(1) = 0$, there exists a $c \in (0,1)$ such that $g^{'}(c) = f(c) = 0$. This is because of the Mean Value Theorem. 
+\end{proof}
+
+\begin{theorem}
+	Suppose f is defined and differentiable for every $x > 0$, and $f^{'}(x) \to 0$ as $x \to \infty$. Put $g(x) = f(x + 1) - f(x)$. Prove that $g(x) \to 0$ as $x \to \infty$.
+\end{theorem}
+
+\begin{proof}
+	As $g(x)$ is differentiable, the mean value theorem allow us to find $c$ such that $g(x) = f(x + 1) - f(x) = (x + 1 - x)f^{'}(c) = f^{'}(c)$ where $x < c < x + 1$ and hence $g(x) \to 0$ as x goes to infinity. This is because as $x \to \infty$, $c \to \infty$.
+\end{proof}
+
+\begin{theorem}
+	Suppose, for a fixed x, $f^{'}(x)$ and $g^{'}(x)$ exist, $g^{'}(x) \not = 0$, and $f(x) = g(x) = 0$. Prove that $$\lim_{t \to x} \frac{f(t)}{g(t)} = \frac{f^{'}(x)}{g^{'}(x)} $$.
+\end{theorem}
+
+\begin{proof}
+	As $t \to x$, $f(t) = f(x) + [f^{'}(x) + v(t)](t - x)$ and $g(t) = g(x) + [g^{'}(x)+ u(t)](t - x)$ where $u(t) \to 0$, and $v(t) \to 0$. Hence $\frac{f(t)}{g(t)} = \frac{f(x) + f^{'}(x)(t - x)}{g(x) + g^{'}(x)(t - x)} = \frac{f^{'}(x)}{g^{'}(x)}$ as $t \to x$.
+\end{proof}
+
+\begin{theorem}
+	Suppose $f^{'}$ is continous on $[a,b]$ and $\epsilon > 0$. Prove that there exists $\delta > 0$ such that $$|\frac{f(t) - f(x)}{t - x} - f^{'}(x)| < \epsilon $$ whenever $ 0 < |t - x| < \delta$, $a \leq x \leq b$, $ a \leq t \leq b$.
+\end{theorem}
+
+\begin{proof}
+	Since $f^{'}$ is defined on $[a,b]$, let $x,t \in [a,b]$ and  $\phi(t) = \frac{f(t) - f(x)}{t - x}$ then  $f^{'}(x) = \lim_{t \to x} \phi(t)$ for all $x \in [a,b]$ and for all $\epsilon > 0$, there exists $\delta(x,\epsilon) > 0$ such that $|t - x| < \delta(x,\epsilon) \implies |\phi(t) - f^{'}(x)| < \epsilon$. Hence for all $x,t \in [a,b]$, $\epsilon > 0$, there exists $ \delta > 0$ such that  $|t - x| < \delta \implies |\phi(t) - f^{'}(x)| < \epsilon$ by setting $\delta = \delta(x,\epsilon)$.
+\end{proof}
+
+\begin{theorem}
+	Suppose $f$ is defined in a neighborhood of x and suppose $f^{''}(x)$ exists. Show that $$\lim_{h \to 0} \frac{f(x + h) + f(x - h) - 2f(x)}{h^{2}} = f^{''}(x) $$
+\end{theorem}
+
+\begin{proof}
+	Let $\epsilon > 0$, then we can find $\delta_{0}$ such that $$|\frac{f(x + h) - f(x)}{h} - f^{'}(x)| < \epsilon $$ and $$|\frac{f(x) - f(x - h)}{h} - f^{'}(x - h)| < \epsilon $$ whenever $|h| < \delta_{0}$. Hence , $$-h(f^{'}(x) - f^{'}(x - h) + 2 \epsilon)  \leq f(x + h) + f(x - h) - 2f(x) \leq h(f^{'}(x) - f^{'}(x - h) + 2 \epsilon)$$ and  $$ |\frac{f(x + h) + f(x - h) - 2f(x)}{h^{2}}| \leq |\frac{f^{'}(x) - f^{'}(x - h)}{h}| + 2 \epsilon$$ and $$f^{''}(x) - \epsilon \leq \frac{f^{'}(x) - f^{'}(x - h)}{h} \leq f^{''}(x) + \epsilon $$ whenever $|h| < \delta_{1}$. Set $\delta = \min\{\delta_{0},\delta_{1}\}$ and the claim follows.
+\end{proof}
+\end{document}
+

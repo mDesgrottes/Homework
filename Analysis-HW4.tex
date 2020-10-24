@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage{amsmath}
+\renewcommand{\baselinestretch}{1.05}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\title{Analysis 1}
+\author{Mike Desgrottes}
+
+\date{October 2020}
+
+\begin{document}
+\maketitle
+ \section{}
+
+ \begin{theorem}
+	 Prove, using the definition, that the function $f:[0,\infty) \to [0, \infty)$, $f(x) = \sqrt{x}$ is continuous.
+ \end{theorem}
+
+ \begin{proof}
+	 We will show that for any $c \in (0,\infty)$, $\lim_{x \to c} f(x) = f(c)$. Let $\epsilon > 0$, then a choice for $\delta = \epsilon\sqrt{c}$ $$ |x - c| = |\sqrt{x} - \sqrt{c}||\sqrt{x} + \sqrt{c}| \leq \delta \implies |\sqrt{x} - \sqrt{c}| \leq \frac{\delta}{|\sqrt{x} + \sqrt{c}|} \leq \frac{\delta}{\sqrt{c}}\leq \epsilon$$. 
+
+	 For the case when $c = 0$, $\sqrt{0} = 0 \implies \lim_{x \to 0} \sqrt{x} = 0$ because the choice $\delta = \sqrt{\epsilon}$ implies that $|x| = |\sqrt{x}|^{2} \leq (\sqrt{\epsilon})^{2} \implies |\sqrt{x}| \leq \epsilon$.
+ \end{proof}
+
+\begin{theorem}
+	if f is a continuous function of a metric space X into a metric space Y, prove that $$f(\overline{E}) \subset  \overline{f(E)} $$
+\end{theorem}
+
+\begin{proof}
+	$ $\newline
+	 If $x \in E$, then $f(x) \in f(E) \subset \overline{f(E)}$. Let x be a limit of E that is not in E, then $f(x) \in V$, where V is an open set of Y. $f^{-1}(V)$ is an open set that contains x and must intersects E at a point different than x. Let $y \in f^{-1}(V) \bigcap E$. $f(y) \in f(E) \subset \overline{f(E)}$. Thus, $f(y) \in V \bigcap f(E)$. It matters not whether $f(x) = f(y)$ or $f(x) \not = f(y)$ because in the former $f(x) \in \overline{f(E)}$ and in the latter $f(x)$ is a limit point of $f(E)$. Hence, the result is proven. 
+\end{proof}
+ \begin{theorem}
+	 If f is a continuous function from a metric space X to $\mathbb{R}$, and let $a \in \mathbb{R}$. Prove that the set $\{ x\in X: f(x) > a\}$ is open and the sets $\{x \in X: f(x) \geq a\}$, $\{x \in X: f(x) = a \}$ are closed. Use this to show that the set $A_{1} = \{(x,y,z) \in \mathbb{R}^{3}: x^{2} + y^{3} + z^{4} < 1\}$ is open and $A_{2} = \{ (x,y,z) \in \mathbb{R}^{3}: x^{2} + xy + y^{2} + yz + z^{2} = 1\}$.
+ \end{theorem}
+
+ \begin{proof}
+	 $\{ x \in X: f(x) > a \} = f^{-1}(a,\infty)$ which is an open set because $f(x)$ is continuous. The compliment of $\{ x \in X: f(x) \geq a \}$ is $\{ x \in X: f(x) <  a \}$. The compliment of $\{x \in X: f(x) = a\}$ is $\{ x \in X: f(x) > a \} \bigcup \{x \in X: f(x) < a \}$ which are both open. $\{ x \in X: f(x) < a \}$ is open in X because it is the preimage of $(-\infty, a)$ under f. 
+	 
+
+	 $A_{1}$ is open because $f(x,z,z) = x^{2} + y^{3} + z^{4}$ is continuous in $\mathbb{R}^{3}$. 
+
+	 $A_{2}$ is closed because $g(x,y,z) = x^{2} + xy + y^{2} + yz + z^{2}$.
+ \end{proof}
+
+ \begin{theorem}
+	  
+	 let f, g  be continuous function from a metric space X to $\mathbb{R}$ into a metric space Y. Let E be a dense subset of X. Prove that $f(E)$ is dense in $f(X)$. If $f(x) = g(x)$ for all $x \in E$, then $f(x) = g(x)$ for all $x \in X$.
+ \end{theorem}
+
+ \begin{proof}
+	 E is dense in X. Hence $\overline{E} = X \implies f(\overline{E}) = f(X) \subset \overline{f(E)}$. Let $y \in Y$ be a limit point of $f(E)$. Then there exists a sequence $\{y_{n}\} \in f(E)$ that converges to y. There is also a corresponding sequence in Esuch that $x_{n} \in  f^{-1}(y_{n})$ where $\{x_{n}\}$ converges in X. Hence there exists a $x \in X$, such that $f(x) = y \implies y \in f(X) \implies \overline{f(E)} \subset f(X)$. We have shown that $f(X) = \overline{f(E)}$. 
+
+	 $f(E)$ is dense in $f(X)$. For all $x \in X$, we can find a sequence $\{x_{n}\}$ in E such that $x_{n} \to x$. Continuity of $f(x)$ implies that the sequence $\{f(x_{n})\}$ converges to $f(x)$. Hence, for every $\epsilon > 0$, there exists $\delta > 0$ such that $|x_{n} - x| < \delta \implies |f(x_{n}) - f(x)| = |g(x_{n}) - f(x)| < \epsilon$. $\{ g(x_{n})\} \to f(x)$. The uniqueness of limits give us our results.
+ \end{proof}
+
+\begin{theorem}
+	Define f, g on $\mathbb{R}^{2}$ by: $f(0,0) = g(0,0) = 0$ $f(x,y) = \frac{xy^{2}}{x^{2} + y^{4}}$, $g(x,y) = \frac{xy^{2}}{x^{2} + y^{6}} $, if $(x,y) \not = (0,0)$. Prove that f is bounded on $\mathbb{R}^{2}$, that g is unbounded in every neighborhood of $(0,0)$, and that f is not continuous at $(0,0)$; neverhteless, the restrictions of both f and g to every straight line in $\mathbb{R}^{2}$ are continuous. 
+
+\end{theorem}
+
+\begin{proof}
+	$ 0 \leq (x - y^{2})^{2} = x^2 + y^4 -2xy^2$ for all $x,y \in \mathbb{R}$. If $x > 0$, then $\frac{-xy^{2}}{x^{2} + y^{4}} \leq  \frac{xy^{2}}{x^{2} + y^{4}} \leq \frac{2xy^{2}}{x^{2} + y^{4}} \leq 1$. Hence $f(x,y)$ is bounded. 
+
+	$0 \leq (x - y^{3})^{2} = x^{2} + y^{6} - 2xy^{3}$, then $$g(x,y) = \frac{xy^{2}}{x^{2} + y^{6}} = \frac{1}{y} \frac{xy^{3}}{x^{2} + y^{6}} \leq \frac{1}{y} $$ which goes to infinity or negative infinity as y approaches zero. Hence, $g(x,y)$ is unbounded.
+
+	$f(x,kx) = \frac{k^{2}x^{3}}{x^{2} + k^{4}x^{4}} = \frac{xk^{2}}{1 + x^{2}k^{4}}$, and $g(x,kx) = \frac{xk^{2}}{1 + k^{6}x^{4}}$ which are continuous.
+
+	Let $(y^(2),y) \to (0,0$, then $g(y^{2},y) = \frac{y^{4}}{2y^{4}} = \frac{1}{2}$ which not $0$. Hence it is discontinuous.
+\end{proof}
+ \begin{theorem}
+	 Let E be a dense subset of X. Let $f(x)$ be a uniformly continuous real function defined on E. Prove that f has a continuous extension from E to X.
+ \end{theorem}
+
+ \begin{proof}
+	 Let \[ g(x) = \begin{cases}
+		 f(x) & x \in E \\
+		 \lim_{p \to x} f(p) & x \not \in E \\
+	 \end{cases}\] 
+	 As X is the closure of E, $x \in X/E$ is a limit point of E. To see that it is continuous. Suppose that $\{y_{n}\}$, $\{x_{n} \} $ are both sequences in E that converges to y. Then the sequence $b_{2n} = x_{n}$ and $b_{2n + 1} = y_{n}$ also converges to y. Let $N$ be a large number such that $|y_{n} - y| < \epsilon$ and $|x_{n} - y| < \epsilon$. Then $$|x_{n} - y| \leq |x_{n} - y_{m}| + |y_{m} - y| \leq|x_{n} - y_{m}| + \epsilon \leq  2\epsilon $$ 
+
+	Hence, the sequence $\{b_{m}\}$ is cauchy. It suffices to show that $f(b_{m})$ is also cauchy. Take N large enough, such that $|b_{n} - b_{m}| < \delta$. f is uniformly continuous on E. We can find a $\delta > 0$ such that for all points $p,q \in E$ with $|p - q| < \delta \implies |f(p) - f(q)| < \epsilon$. Take $p = b_{n}$, and $q = b_{m}$. Hence $\{f(b_{m}\}$ is cauchy and convergent. Since it converges, all of its subsequence must converge to $f(y)$.
+ \end{proof}
+ \begin{theorem}
+	 let \[ f(x) = \begin{cases}
+		 \frac{1}{n} & \frac{m}{n} \in \mathbb{Q}\\
+		 0 & x \in \mathbb{R}/\mathbb{Q} \\
+	 \end{cases}\] Prove that $f(x)$ is continuous on $\mathbb{R} /\mathbb{Q}$ and discontinuous on $\mathbb{Q}$.
+ \end{theorem}
+
+ \begin{proof}
+	 $\mathbb{Q}$ is dense in $\mathbb{R}$. So for $r \in \mathbb{R}/\mathbb{Q}$, we can find a sequence of rational numbers that converges to r. For N large enough, we can find rational numbers $\frac{m}{n}$ such that $|\frac{m}{n} - r| \leq \delta \implies |m - nr||\frac{1}{n}| < \delta \implies |\frac{1}{n}| \leq \frac{\delta}{|m - nr|} \leq \frac{\delta}{r}$ by choosing $\delta = r\epsilon$. Hence, $f(x)$ goes to zero on the sequence which is  $f(r)$. To see that the function is discontinuous on rational numbers, let $\{ \frac{1}{n} \}$ goes to zero but the sequence $\{ f(\frac{1}{n}) = \frac{1}{n}\}$ also goes to zero as opposed to $f(0) = 1$. 
+
+	 Let $\frac{p}{q} \in \mathbb{Q}$, then the sequence $a_{n} = \frac{p}{q} + \frac{1}{n} = \frac{pn + q}{nq}$ converges to $\frac{p}{q}$, but $f(a_{n}) = \frac{1}{nq}$ converges to zero as opposed to $f(p/q) = \frac{1}{q}$. Thus, f is discontinuous at every rational points. 
+ \end{proof}
+
+ \begin{theorem}
+	 A real valued function f defined in $(a,b)$ is said to be convex if $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y) $$ whenever $a < x < y< b$?. What is the geometrical interpretation of this inequality? Prove that every convex function is continuous. Show that if $a < s < t < u < b$ then $$ \frac{f(t) - f(s)}{t - s} \leq \frac{f(u) - f(s)}{u - s} \leq \frac{f(u) - f(t)}{u - t}$$.
+ \end{theorem}
+
+ \begin{proof}
+	 The geometrical interpretation is that $y - \lambda(x - y)$ is the line segment with $x,y$ as endpoints. The definition of convexity says that and two points in $(a,b)$, the image of the line segment between them will be under the line segment between the points $f(x), f(y)$. 
+
+	 Let $t = s + \lambda(u - s)$ where $\lambda = \frac{t - s}{u - s}$. Then by convexity, $f(t) \leq \lambda f(u) + ( 1 - \lambda)f(s)$, and hence $ f(t) -  f(s) \leq \lambda(f(u) - f(s) \implies \frac{f(t) - f(s)}{t - s} \leq \frac{f(u) - f(s)}{u - s}$. By the same token, $(u - s)(f(t) - f(s)) \leq (t - s)(f(u) - f(s))$ implies that $-(u - t + t- s)f(s)\leq (t - u + u -s)f(u) - (u - s)f(t) \implies (u - t)(f(u) - f(s)) \leq (u - s)(f(u) - f(t)$which implies the inequality.
+
+	 Let $x, y, s, t \in (a,b)$, with $a < s < y < x < t < b$ Hence, $$\frac{f(x) - f(y)}{x - y} \leq \frac{f(t) - f(s)}{t - s} \leq \frac{f(t) - f(x)}{t - x} $$. $$\frac{f(y) - f(s)}{y - s} \leq \frac{f(x) - f(s)}{x - s} \leq \frac{f(x) - f(y)}{x - y} $$.
+
+	 These inequalities implies that $|f(x) - f(y)| \leq M|x - y| \leq M\epsilon$ where $M = \max{\frac{|f(t) - f(x)|}{|t - x|}, \frac{|f(x) - f(s)|}{|x - s|}}$. Hence, with $\delta = \frac{\epsilon}{M}$ f is continous on $(a,b)$. 
+ \end{proof}
+\end{document}
+

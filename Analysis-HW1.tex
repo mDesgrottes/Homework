@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath}
+\renewcommand{\baselinestretch}{1.05}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\title{Analysis 1}
+\author{Mike Desgrottes}
+\date{August 2020}
+
+\begin{document}
+\maketitle
+ \section{}
+ 
+ \begin{theorem}
+ 	Prove that the supremum of $\{ \frac{m}{m + n}\}$ is 1 for $m,n \in \mathbb{N}$
+ \end{theorem}
+
+\begin{proof}
+	Since $m + n > m$, $\frac{m}{m + n} < 1$ for all $m,n \in \mathbb{N}$. So, 1 is an upper bound for the sequence. Suppose that $\gamma < 1$, then we will show that $\gamma$ cannot be an upper bound for the sequence. We first begin by showing that $\gamma = \frac{r}{s} \in \{ \frac{m}{m + n}\}$. This is evident by setting $m = r$ and $n = s - r$. Since $\gamma = \frac{cm}{c(m + n)} < \frac{cm}{c(m + n) - 1}$ for any natural number $c > 1$.This implies that there is an element of $\{ \frac{m}{m + n}\}$ which is greater than $\gamma$. Thus, $\gamma$ cannot be an upper bound. We've shown that 1 is an upper bound and any number less than 1 cannot be an upper bound. We proved that 1 is the supremum of the sequence.
+\end{proof}
+\section{}
+\begin{theorem}
+Let $\{a_{n}\}$, and $\{ b_{n}\}$ be two sequences. Prove that $\inf a_{n} + \inf b_{n} \leq inf(a_{n} + b_{n})$.
+\end{theorem}
+\begin{proof}
+Let $\gamma_{1} = \inf a_{n}$, and $\gamma_{2} = \inf b_{n}$, we know that $\gamma_{1} \leq a_{n}$, and $\gamma_{2} \leq b_{n}$ for all $n \in \mathbb{N}$. This implies that $\gamma_{1} + \gamma_{2} \leq a_{n} + b_{n}$ for all $n \in \mathbb{N}$. So, $\gamma_{1} + \gamma_{2}$ is a lower bound. By definition, $\gamma_{1} + \gamma_{2} \leq \inf (a_{n} + b_{n})$.
+\end{proof}
+
+\section{}
+\begin{theorem}
+Prove that $$ \inf \{ \frac{1}{x^2 + 1}: x \in \mathbb{R} \} = 0$$
+\end{theorem}
+
+\begin{proof}
+First, $\frac{1}{x^2 + 1} > 0$ for all $x \in \mathbb{R}$. 0 is a lower bound for the sequence. The sequence in question is bounded above by 1. It suffice to show that any real number $\gamma \in (0,1)$ cannot be a lower bound. We begin by showing that $\gamma$ is in the sequence. This is evident by setting $x =  \sqrt{\frac{1}{\gamma} - 1}$ or $x = -\sqrt{\frac{1}{\gamma} - 1}$. We see that $\frac{1}{(x + 1)^2 + 1} < \gamma$ and $\gamma$ is not a lower bound.
+\end{proof}
+
+\section{}
+\begin{theorem}
+Find the supremum and infinum of the sequence $$\{\frac{m}{n} + \frac{4n}{m}: m,n \in \mathbb{N} \} $$ 
+\end{theorem}
+
+\begin{proof}
+The supremum of the sequence is infinity because the subsequence $\{\frac{1}{n} + 4n: n \in \mathbb{N} \}$ increase without bound. For the infinum, we will show that $4$ is a lower bound and. This is evident because $$\frac{m}{n} + \frac{4n}{m} = \frac{m^2 + 4n^2}{mn} = \frac{(m + 2n)^2}{mn} - 4 \geq 4 $$ . $$(m + 2n)^2 - 4mn = m^2 + 4n^2 - 4mn  = m^2 + 4n(n - m) \geq 0$$ for all m and n. We proceed by noting that if $n \geq m$, then $m^2 + 4n(n - m) \geq 0$ and if $ n < m$ and  $m = n + \gamma$,then  $$ m^2 + 4n(n - m) = (n + \gamma)^2 - 4n\gamma = (n - \gamma)^2 \geq 0$$. Thus, 4 is a lower bound for the sequence. We will show that any number greater than four cannot be a lower bound. 
+Suppose $r \in \mathbb{Q}$, the function $f(r) = \frac{r^2 + 4}{r}$ has derivative $g(r) = \frac{r^2 - 4}{r^2}$ by setting it equal to zero. we get a minimum value at $r = 2$ and $f(2) = 4$. so, any number bigger than 4 cannot be a lower bound for the sequence.
+\end{proof}
+\end{document}
+

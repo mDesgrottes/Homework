@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage{amsmath}
+\renewcommand{\baselinestretch}{1.05}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\title{Analysis 1}
+\author{Mike Desgrottes}
+\date{August 2020}
+
+\begin{document}
+\maketitle
+ \section{}
+ 
+ \begin{theorem}
+ 	Prove that the set $A = \{ (x,y) \in \mathbb{R}^2: 0 < x < 1, 0 < y < 1 \}$ is open in $\mathbb{R}^2$.
+ \end{theorem}
+ \begin{proof}
+ The set $(0,1)$ is open in $\mathbb{R}$ because the set $B(x) = \{ y \in \mathbb{R}: |x - y| < 1 - x\}$ is contained in $(0,1)$. So the neighborhood $B(x,y) = \{ (x^{'}, y^{'}): x^{'} \in B(x), y^{'} \in B(y) \}$ is contained in A for $(x,y) \in A$. Thus A is open.
+ \end{proof}
+ 
+ \begin{theorem}
+ Prove that the set $$A = \{ (x,y) \in \mathbb{R}^2: x^2 + y^2 \leq 1 \} $$ is closed in $\mathbb{R}^2$
+ \end{theorem}
+ 
+ \begin{proof}
+ We defined the set A in terms of the metric on $\mathbb{R}^2$. $$ A = \{ z \in \mathbb{R}^2: |z| \leq 1 \}$$ We will show that the compliment of the set is open in $\mathbb{R}^2$ $$A^{c} = \{ z \in \mathbb{R}^2: |z| > 1 \} $$. We defined the neighborhood $$ B(z) = \{ w \in \mathbb{R}^2, z \in A^{c}: |z - w| < \epsilon \}$$ where $\epsilon = |z| - 1$. We note that if $w \in B$, then $||z| - |w|| \leq |z - w| < |z| - 1$. This implies that $|z| - |w| < |z| - 1 \implies |w| > 1$ or $ 1 - |z| < |w| - |z| \implies |w| > 1$ and $w \in A^{c}$. So, $B \subset A^{c}$.
+ \end{proof}
+
+\begin{theorem}
+Let $(X,d)$ be a metric space. Define $\rho: X$ x $X \to \mathbb{R}$, $$\rho(x,y) = \frac{d(x,y)}{1 + d(x,y)}. $$ Prove that $\rho$ is a metric.
+\end{theorem}
+
+\begin{proof}
+Since $d(x,y) = d(y,x)$, then $\rho(x,y) = \rho(y,x)$ for all x,y and $\rho(x,y) = 0 \Leftrightarrow x = y$. To verify the triangle inequality, we see that $$\rho(x,y) \leq \frac{d(x,z + d(z,y)}{1 + d(x,z) + d(y,z)} = \frac{d(x,z)}{1 + d(x,z) + d(y,z)} + \frac{d(y,z)}{1 + d(x,z) + d(y,z)} \leq \frac{d(x,z)}{1 + d(x,z)} + \frac{d(x,z)}{1 + d(y,z)} = \rho(x,z) + \rho(y,z)$$ for all $z \in X$.
+
+Thus, $\rho$ is a metric.
+\end{proof}
+\begin{theorem}
+	Let A be a bounded closed set of $\mathbb{R}$, prove that $inf A$ and $sup A$ are in A.
+\end{theorem}
+
+\begin{proof}
+	Since A is closed and bounded, it is compact. It implies that its compliment is open. Suppose that $\inf A$ and $\sup A$ are not in A. They must be interior points of the compliment of A. The neighborhoods $(\inf A - \epsilon_{1}, \inf A + \epsilon_{1})$ and $(\sup A - \epsilon_{2}, \sup A + \epsilon_{2})$ will be contained $A^{c}$ for some choice of $\epsilon_{1},\epsilon_{2} > 0$. This would imply that there exists a lower bound of A in $(\inf A, \inf A + \epsilon_{1})$ and an upper bound of A in $(\sup A - \epsilon_{2}, \sup A)$ which would give rise to a contradiction. So, either $\sup A, \inf A \in A$ or they are limit points of A. Compact sets contain their limit points.
+\end{proof}
+
+\begin{theorem}
+	Let $A_{1},...,A_{n}$ be subsets of a metric space and let $B = \bigcup_{i = 1}^{n} A_{i}$. Prove that $\bar{B}= \bigcup_{i = 1}^{n} \bar{A_{i}}$
+\end{theorem}
+
+\begin{proof}
+	Let $B^{'}$ be the set of limit points of B. $$\bar{B} = B \bigcup B^{'} = \bigcup_{i = 1}^{n} A_{i} \bigcup \bigcup_{i = 1}^{n} A_{i}^{'} = \bigcup_{i = 1}^{n} (A_{i} \bigcup A_{i}^{'}) = \bigcup_{i = 1}^{n} \bar{A_{i}}. $$
+	
+	It remains to show that $B^{'} = \bigcup_{i = 1}^{n} A_{i}^{'}$. Let x be a limit points of $A_{i}$ for some i, then any neighborhood around x must intersect $A_{i}$ at a point different than x. So, it also intersects B and it is also a limit point of B. So, $\bigcup_{i = 1}^{n} A_{i}^{'} \subset B^{'}$. If x is a limit point of B, then every neighborhood centered at x must intersect B at some point different than x. This imply that it also intersects $A_{i}$ for some i and $B^{'} \subset \bigcup_{i = 1} A_{i}^{'}$
+\end{proof}
+\begin{theorem}
+	Let $E^{'}$ be the set of limit points of E. Prove that $E^{'}$ is closed.
+\end{theorem}
+\begin{proof}
+	We will show that $(E^{'})^{c}$ is open. If $x$ is not a limit point of E, then $x \in (E^{'})^{c}$. This means that there is a neighborhood around x which does not intersect E. The neighborhood in question is a subset of $(E^{'})^{c}$. so, $(E^{'})^{c}$ is open.
+\end{proof}
+
+\begin{theorem}
+	Let $A$ be the set of interior points of E. Prove the following.
+	
+	(a) A is open.
+	
+	(b) If $G \subset E$ and G is open, prove that $G \subset A$.
+	
+	(c) Prove that the compliment of A is the closure of the compliment of E.
+	
+	(d) Does $E$ and $E^{'}$ always have the same interior?
+	
+\end{theorem}
+\begin{proof}
+
+	(a) By the definition of open set, A is open because all of its points are interior.
+	
+	(b) Since G is open, all its elements are interior point of E. Hence, the elements belong to A, the set of all interior points of E. Therefore, $G \subset A$.
+	
+	(c) Let $x \in A^{c}$, then it implies that x is not an interior point of E. So all neighborhoods of x are not contained in E. This can happen because x is not in E or every neighborhood of x intersect $E^{c}$. Hence, $x \in E^{c} \bigcup (E^{c})^{'} = \bar{E^{c}}$. So, $A^{c} \subset \bar{E^{c}}$. If $x \in \bar{E^{c}}$, then either x is a limit point of $E^{c}$ or $x \in E^{c}$, either way no neighborhood of x will be contained in E. So $\bar{E}^{c} \subset A^{c}$.
+	
+	(d) No, because interior points are not necessarily limit points. So, if $x \in E^{\circ}$ and $x \not \in E^{'}$, then $E^{\circ}$ and $E^{'\circ}$ will differ.
+\end{proof}
+\begin{theorem}
+	Give an example of an open cover of $(0,1)$ which has no finite subcover.
+\end{theorem}
+\begin{proof}
+	$\bigcup_{n = 1}^{\infty} (0,1 - \frac{1}{2^{n}})$
+\end{proof}
+
+\begin{theorem}
+Which of the following sets are compact? Justify.
+
+(a) $[0,1] \bigcup [3,4]$- Yes, it is closed and bounded.
+
+(b) $[0,\infty)$ - It is not bounded. It is not compact.
+
+(c) $A =  \{ x \in \mathbb{R}: 0 \leq x \leq 1, x $ is irrational $\}$. - No, it is not closed. The compliment of this set is not open. Pick a rational number in $(0,1)$, then no neighborhood around that rational number will be contained in the compliment of A. 
+
+(d) $\{ 1, \frac{1}{2}, \frac{1}{3},...,\frac{1}{n},...\} \bigcup \{0\}$ - Yes, it is closed and bounded. The compliment of this set is open. For any $n \in \mathbb{N}$, pick any real number in $(\frac{1}{n + 1}, \frac{1}{n})$, then we can find a neighborhood around that real number that is contained in $(\frac{1}{n + 1}, \frac{1}{n})$, and it is open. The compliment is $ \bigcup_{n = 1}^{\infty} (\frac{1}{n + 1}, \frac{1}{n}) \bigcup (-\infty, 0) \bigcup (1, \infty)$ which is open.
+\end{theorem}
+\begin{theorem}
+Let A and B be compact subsets of a metric space $(X,d)$. Prove that $A \bigcup B$ is compact.
+\end{theorem}
+
+\begin{proof}
+Let $\bigcup_{i = 1}^{\infty} A_{i}$ be an open  cover of A, and $\bigcup_{j = 1}^{\infty} B_{j}$ be an open cover of B. Since A and B are compact, it implies that we can find a finite subcover of A and B from their respective open cover. So, $A \bigcup B \subset \bigcup_{k = 1}^{n} A_{i} \bigcup \bigcup_{l = 1}^{m} B_{l}$\footnote{I hope this doesn't cause any confusion. We picked a finite subcover of A which has n elements. I don't mean to say we chose $A_{1},A_{2},...A_{n}$. } which is a finite subcover of $\bigcup_{i = 1}^{\infty} A_{i} \bigcup \bigcup_{j = 1}^{\infty} B_{j}$. Thus, $A \bigcup B$ is compact.
+\end{proof}
+
+\begin{theorem}
+Let $(F_{\alpha})$ be a family of connected sets in a metric space $(X,d)$. Assume that $\bigcap_{\alpha} F_{\alpha} \not = \emptyset$. Prove that $\bigcup_{\alpha} F_{\alpha}$ is connected.
+\end{theorem}
+\begin{proof}
+We will prove it by contradiction. Suppose that $\bigcup_{\alpha} F_{\alpha}$ is disconnected with the assumption of the theorem. So, $ \bigcup_{\alpha} F_{\alpha} = A \bigcup B$ where A and B are nonempty seperated sets. If there exists a set $F_{\alpha}$ such that $F_{\alpha} \subset A$ or $F_{\alpha} \subset B$ then it contradicts the assumption that $\bigcap_{\alpha} F_{\alpha}$ because seperated sets are disjoint. So, for all $\alpha$, $F_{\alpha} = C \bigcup D$ where $C \subset A$ and $D \subset B$. Since $\bar{C} \subset \bar{A}$ and $\bar{D} \subset \bar{B}$, this imply that C and D do not contain the other's limit points and $F_{\alpha}$ is thus disconnected which is a contradiction. $\bigcup_{\alpha} F_{\alpha}$ is connected.
+\end{proof}
+\end{document}
+
