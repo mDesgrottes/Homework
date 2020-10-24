@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{amsmath}
+\renewcommand{\baselinestretch}{1.05}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\title{Matrix Theory}
+\author{Mike Desgrottes}
+\date{August 2020}
+
+\begin{document}
+\maketitle
+
+\section{}
+\begin{theorem}
+Let V be a vector space and $\alpha \in End(V)$.
+
+(i) Prove that if V is dimensional, then $\alpha$ is injective if and only if $\alpha$ is also surjective.
+
+(ii) Provide an example that shows that this is not true if V had infinite dimension.
+\end{theorem}
+
+\begin{proof}
+(i) Suppose that $\alpha$ is injective, then it implies that $ker(\alpha) = \{0\} \implies \dim (Ker \alpha) = 0$. The image of $\alpha$ can be written as the direct sum $ker(\alpha) + im(\alpha)$. Thus, $\dim(V) = \dim(ker(\alpha)) + \dim(im(\alpha)) = n \implies \dim(V) = \dim(im(\alpha))$. Therefore, $\alpha$ is surjective. 
+
+Suppose that $\alpha$ is surjective, then it implies that $\dim(V) = \dim(im(\alpha)) \implies \dim(ker(\alpha)) = 0$. Therefore, $\alpha$ is injective. 
+
+
+	(ii) Let $V =C[a,b]$, and $I(f) = \int_{a}^{b} f(x) dx$. This is a surjective linear operator that is not injective.  
+\end{proof}
+
+\begin{theorem}
+	Let $\alpha, \beta \in Hom(V,W)$ where dim$(V) < \infty$. Prove that $$rk( \alpha + \beta) \leq rk(\alpha) + rk(\beta) $$.
+\end{theorem}
+
+\begin{proof}
+	$rk(\alpha + \beta) = rk(\alpha) + rk(\beta) - rk(Im(\alpha) \bigcap Im(\beta)) \implies rk(\alpha) + rk(\beta) + rk(Im(\alpha) \bigcap Im(\beta))$ which implies the result.
+\end{proof}
+
+\begin{theorem}
+	Let $\alpha \in End(V)$ for a finite dimensional vector space V. Suppose that $\alpha$ is nilpotent of index k. Prove that $I - A$ is an automorphism of v. 
+\end{theorem}
+
+\begin{theorem}
+	Let V be a finite dimensional vector space over $\mathbb{F}$ and $\alpha$ be a linear map from V to $\mathbb{F}$. Assume that $\alpha$ is not the zero map. Prove that there exists a vector $u \in V$ such that $\alpha(u) = 1$ and V is the direct sum of Ker$\alpha$ and span$\{u\}$.
+\end{theorem}
+
+\begin{proof}
+	Since $\alpha$ is not the zero map, there exists a vector in V such that $\alpha(v) \not = 0$. $\alpha(v) = u \implies \alpha(v/u) = 1$. We know that $\mathbb{F} = $null$(\alpha)$ + rk$(\alpha)$
+\end{proof}
+\end{document}
+

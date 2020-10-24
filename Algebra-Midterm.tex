@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage{amsmath}
+\renewcommand{\baselinestretch}{1.05}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage{graphics}
+\usepackage{tikz-cd}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{solution}{Solution}
+\newtheorem{definition}{Definition}
+\title{Analysis 1}
+\author{Mike Desgrottes}
+\date{August 2020}
+
+\begin{document}
+\maketitle
+ \section{}
+\begin{theorem}
+Show that Set has a subobject classifier and determine if Grp has a subobject classifier. 
+\end{theorem}
+
+\begin{proof}
+Let $ \omega = \{ 0,1\}$, we shall show that the diagram \begin{tikzcd}
+X \arrow[r, "\phi"] \arrow[d, "j" red]
+& 1 \arrow[d, "\psi" red] \\
+A \arrow[r, red, "\eta" blue]
+& \omega
+\end{tikzcd} commutes for all monomorphism $j: X \to A$ where $1$ is a terminal object of Set. Now, $\phi$ is unique by virtue of 1 being terminal. If $\eta(x) = 1$ if $x \in X$, and $0$ otherwise, and $\psi(1) = 1$. Then necessarily, we see that $\eta(j(x)) = \psi(\phi)$. So, the diagram commutes. Suppose that $\Tilde{\eta}$ is another morphism that make the diagram commutes. Then $\eta(j(x)) = \Tilde{\eta}(j(x)) \implies \eta(x) = \Tilde{\eta}(x)$ whenever $x \in X$. This also implies that $\eta(x) = \Tilde{\eta}(x)$ for all x. The two morphisms coincide and are one and the same. 
+\end{proof}
+\begin{theorem}
+Show that in every category with products/coproducts that $$ A \pi B \cong B \pi A$$ and $$ A \amalg B \cong B \amalg A $$
+\end{theorem}
+
+\begin{proof}
+$A \pi B$, and $B \pi A$ are both final objects in the category $C_{A,B}$. $A \amalg B$, and $B \amalg A$ are both initial objects in the category $C^{A,B}$. Initial and final objects are isomorphic when they exists in the same category.
+\end{proof}
+\begin{theorem}
+Let X be a set, A an abelian group and $\phi: X \to A$. Prove that there exists  a unique abelian group homomorphism $\Tilde{\phi} : G/H \to A$ such that 
+\begin{tikzcd}
+X \arrow[rd, "\phi"] \arrow[r] & G/H \arrow[d, "\Tilde{\phi}"] \\
+& A
+\end{tikzcd} commutes where $G = F(x)$ and $H = [G,G]$
+
+\end{theorem}
+
+\begin{proof}
+We shall show that the following diagram commutes. 
+
+\begin{tikzcd}
+X \arrow[rd, "\phi"] \arrow[r, "j"] & G \arrow[r, "\psi"] \arrow[d, "\Tilde{\psi}"]& G/H \arrow[ld, "\Tilde{\phi}"]\\
+& A
+\end{tikzcd}
+
+G being a free group forces $\Tilde{\psi}$ to be unique and the first triangle commutes. The first isomorphism theorem makes the second triangle commutes. Therefore, the outer triangle also commute because $\Tilde{\psi}(\psi(j(x))) = \phi(x)$. The uniqueness of $\Tilde{\phi}$ implies that $G/H$ is an initial object in the category $F^{A}$. $F^{Ab}(X)$ is also an initial object. Therefore $G/H \cong F^{Ab}(X)$.
+
+\end{proof}
+
+\begin{theorem}
+Let $\phi: G \to H$, and $\psi: H \to K$ are morphisms in a category with products. Prove that $$ (\psi \circ \phi) \pi (\psi \circ \phi) = ( \psi \pi \psi) \circ (\phi \pi \phi)$$
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+Let $H \leq G$ be a subgroup. Prove that 
+
+\begin{tikzcd}
+G \times G/H \arrow[r] & G/H \\ 
+\end{tikzcd} and 
+
+\begin{tikzcd}
+G \times G/(gHg^{-1}) \arrow[r] & G/(gHg^{-1}) \\
+\end{tikzcd} are 3isomorphic
+\end{theorem}/   
+\begin{proof}
+H is normal. $H = gHg^{-1}$ for all $g \in G$. 
+\end{proof}
+
+\begin{theorem}
+Let $G_{1},G_{2}$ be two groups and $\phi: F(G_{1}) \to G_{1}$, and $\psi: F(G_{2}) \to G_{2}$ be natural epimorphism. Prove that $G = F(G_{1} \bigcup G_{2})/< Ker \phi_{1}, Ker\phi_{2}>$ is a coproduct in Grp.
+\end{theorem}
+
+\begin{proof}
+First, we see that G come with pair of morphism. $j_{G_{1}}: g_{1} \to [g_{1}]$ and $j_{G_{2}}: g_{2} \to [g_{2}]$ by sending each element of the group to their equivalence classes in the quotient group. If we let $Z$ be  a group endowed with pair of morphism $f_{1}, f_{2}$, then we have to show that there exists a unique morphism $\sigma$ such that the diagram \begin{tikzcd}
+G_{1} \arrow[d, "j_{G_{1}}"] \arrow[rd, "f_{1}"] \\
+G \arrow[r, "\sigma"] & Z  \\
+& G_{2} \arrow[lu, "j_{G_{2}}"] \arrow[u, "f_{2}"] \\
+\end{tikzcd}. The map given by $\sigma([g_{1}]) = f_{1}(g_{1})$ and $\sigma([g_{2}]) = f_{2}(g_{2})$ where $g_{1} \in G_{1}$ and $g_{2} \in G_{2}$
+\end{proof}
+
+\begin{theorem}
+Prove that Grp has cokernels. Determine if Grp has coequalizer. 
+\end{theorem}
+
+\begin{proof}
+	Let $\phi: G \to G^{'}$, we proceed by proving that $coker \phi = G^{'}/N$ where N is the smallest normal subgroup that contains $im \phi$. Intersection of normal subgroups is again normal. 
+\begin{tikzcd}
+	G \arrow[r, "\phi"] & G^{'} \arrow[r, "\alpha"] \arrow[d, , "\phi"]  & L  \\
+			    & G^{'}/N \arrow[ur, "\psi"] \\
+\end{tikzcd}
+
+The diagram commute with $\psi(gN) = \alpha(g)$ and $\phi(g) = gN$. The function is well-defined because N is normal. $gN = hN \implies gh^{-1} \in N \implies \psi(gN) = \psi(hN) $ because $\psi(gh^{-1}N) = \psi(N)$. The uniqueness of $\psi$ is because it is completely determined by $\alpha$.
+\end{proof}
+\end{document}
+

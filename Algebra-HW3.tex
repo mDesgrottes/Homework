@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{amsmath}
+\renewcommand{\baselinestretch}{1.05}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\title{Analysis 1}
+\author{Mike Desgrottes}
+\date{October 2020}
+
+\begin{document}
+\maketitle
+
+\begin{theorem}
+	Suppose that $\alpha \in End(v)$ and $V = W_{1}  \bigoplus .. \bigoplus W_{k}$ such that each subspace is $\alpha$-invariant. Prove that there exists a basis $B$ for $V$ such that the representation matrix of $\alpha$ with resprct to B has the form $A = [A_{ij}]$ are zero matrices for all $i \not = j$.
+
+
+\end{theorem}
+
+\begin{proof}
+	Let $B_{i}$ be a basis for $W_{i}$, then the matrix representation of $\alpha$ with respect to $B_{i}$ is contained in $W_{i}$ because $W_{i}$ is $\alpha$-invariant. $\bigcup_{i = 1}^{k} B_{i}$ is a basis for V. Then for every $v \in B_{i}$, then $\alpha(v) \not \in B_{j}$ for $j \not = i$. Hence $A = diag(A_{11},...,A_{kk})$.
+\end{proof}
+
+\begin{theorem}
+	Let A be a matrix such that its characteristic polynomial is completely reducible. Prove that A is nilpotent if and only if $spec(\alpha) = \{0\}$.
+\end{theorem}
+
+\begin{proof}
+	Since the characteristic polynomial of A is completely reducible, then A is similar to a diagonal matrix. Hence, the diagonal matrix is also nilpotent. Let $B = diag(\lambda_{1},...,\lambda_{n})$ is the diagonal matrix, then $B^{k} = diag(\lambda_{1}^{k},...,\lambda_{n}^{k}) = 0 \implies \lambda_{i} = 0$ for all i. So, A being nilpotent implies $spec(A) = \{0\}$.
+
+	Suppose that the spectrum of A is trivial, then A is similar to the zero matrix. Hence $A = P^{T}BP = 0$ which is nilpotent. 
+\end{proof}
+
+\begin{theorem}
+	Prove that if J is a m x m Jordan block with zero maind diagonal, then $det(tI - J) = t^{m}$ is the minimal polynomial of  J.
+\end{theorem}
+\begin{theorem}
+	let $p(t) = t^{3} - 6t^{2} + 11t - 6$. Describe the Jordan Canonical forms of the 3 x 3 matrices A that statisfies $p(A) = 0$ if such matrices exist.
+\end{theorem}
+\end{document}
+
